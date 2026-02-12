@@ -3,48 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>Valentine's Day Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffefef;
+            color: #333;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: pink;
-            font-family: Arial, sans-serif;
-            animation: backgroundPulse 3s infinite alternate;
+            text-align: center;
         }
         h1 {
-            color: red;
             font-size: 4em;
-            margin-bottom: 20px;
+            margin-bottom: 0.2em;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 0.5em 0;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 1em 0;
         }
         button {
-            padding: 15px 30px;
-            font-size: 1.5em;
+            background-color: #e63946;
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
+            padding: 0.5em 1.5em;
+            font-size: 1em;
             cursor: pointer;
-            animation: buttonBounce 0.5s infinite alternate;
-            margin: 10px;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background-color: lightcoral;
+            background-color: #d62839;
         }
-        @keyframes backgroundPulse {
-            0% { background-color: pink; }
-            100% { background-color: lightpink; }
-        }
-        @keyframes buttonBounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Will You Be My Valentine?</h1>
-    <button onclick="alert('Yay! You said yes! 💖')">Yes!</button>
-    <button onclick="alert('Oh no! That's okay, maybe next time! 💔')">No!</button>
+    <h1>Happy Valentine's Day!</h1>
+    <h2>Celebrate Love and Friendship</h2>
+    <p>Join us for a day full of love, joy, and beautiful moments!</p>
+    <button onclick="alert('Love is in the air!')">Click for a Surprise</button>
 </body>
 </html>
