@@ -3,15 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Proposal</title>
+    <title>Valentine's Proposal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeef2;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #e63946;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .funny-line {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .form-container {
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px dashed #f1c40f;
+            display: inline-block;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #e63946;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d62839;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            .funny-line {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>To My One and Only</h1>
-    <p>Roses are red, violets are blue, I can’t imagine my life without you!</p>
-    <p>In the grand comedy of love, you are my favorite punchline. Let's make every moment together a hilarious masterpiece!</p>
-    <p>Just like a fine wine, our love gets better with age. Let’s uncork this bottle and make every day a celebration!</p>
-    <p>So, what do you say? Will you be my Valentine and let’s star in our very own love story, filled with laughter, love, and maybe a few goofy moments? </p>
-    <h2>The Biggest Question</h2>
-    <p>Will you marry me and be my partner in crime, my confidant, and my forever Valentine?</p>
+    <h1>Will You Be My Valentine?</h1>
+    <div class="funny-line">Roses are red, violets are blue, I can't rhyme, but will you?
+    </div>
+    <div class="form-container">
+        <input type="text" placeholder="Your Name" required>
+        <input type="text" placeholder="Your Partner's Name" required>
+        <button onclick="submitProposal()">Submit</button>
+    </div>
+    <script>
+        function submitProposal() {
+            alert('You just proposed to your Valentine! 💖');
+        }
+    </script>
 </body>
 </html>
