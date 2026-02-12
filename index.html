@@ -3,97 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine Cutie</title>
+    <title>Valentine Cutie 💖</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff77a3, #ff66b2);
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.5s;
-        }
-        .yes {
-            background: #ff66b2;
-            margin: 10px;
-        }
-        .no {
-            background: #ff4d94;
-            margin: 10px;
-        }
-        .floating-hearts {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            display: none;
-        }
-        .heart {
-            width: 20px;
-            height: 20px;
-            background: red;
-            position: absolute;
-            border-radius: 50%;
-            animation: float 2s infinite;
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { min-height: 100vh; background: linear-gradient(135deg, #ff758c, #ff7eb3); display: flex; justify-content: center; align-items: center; padding: 20px; overflow: hidden; }
+        .container { width: 100%; max-width: 420px; background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border-radius: 20px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeIn 1.2s ease-in-out; }
+        h1 { font-size: clamp(20px, 5vw, 28px); color: white; margin-bottom: 25px; }
+        .buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+        button { padding: 12px 22px; font-size: 15px; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s ease; min-width: 100px; }
+        #yesBtn { background: #ff4d6d; color: white; }
+        #yesBtn:hover { transform: scale(1.1); }
+        #noBtn { background: #333; color: white; }
+        #message { min-height: 60px; color: white; font-size: 16px; margin-top: 10px; }
+        .heart { position: fixed; font-size: 20px; animation: float 5s linear infinite; }
+        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Valentine Cutie!</h1>
-        <p>Will you be my Valentine?</p>
-        <button class="yes" onclick="showMessage()">Yes</button>
-        <button class="no" onclick="moveAway()">No</button>
-        <div class="floating-hearts"></div>
-        <p id="message" style="display:none;"></p>
+        <h1>Will You Be My Valentine Cutie? 💕</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+            <button id="noBtn" onclick="handleNo()">No 😜</button>
+        </div>
+        <div id="message"></div>
     </div>
-
     <script>
-        function showMessage() {
-            document.getElementById('message').innerText = "You just made my world brighter, Cutie ❤️✨ I promise unlimited smiles, silly fights & forever love 💍💕";
-            document.getElementById('message').style.display = 'block';
-            const heartsContainer = document.querySelector('.floating-hearts');
-            heartsContainer.style.display = 'block';
-            for (let i = 0; i < 10; i++) {
-                let heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 100 + 'px';
-                heart.style.animationDuration = (Math.random() * 3 + 1) + 's';
-                heartsContainer.appendChild(heart);
+        let noClickCount = 0;
+        const noMessages = [
+            "Are you sure Cutie? 🥺",
+            "Think again… I'm really sweet 😌",
+            "I promise chocolates forever 🍫",
+            "Free hugs included 🤗",
+            "Last chance... my heart is fragile 💔",
+            "Okay fine… No button retiring now 😤"
+        ];
+        function handleNo() {
+            const message = document.getElementById("message");
+            if (noClickCount < noMessages.length) {
+                typeWriter(noMessages[noClickCount]);
+                noClickCount++;
+            }
+            if (noClickCount >= noMessages.length) {
+                document.getElementById("noBtn").disabled = true;
+                document.getElementById("noBtn").style.opacity = "0.5";
+                document.getElementById("noBtn").innerText = "No ❌ (Blocked)";
             }
         }
-
-        function moveAway() {
-            const noButton = document.querySelector('.no');
-            noButton.style.transform = 'translateX(-200px)';
+        function sayYes() {
+            typeWriter("You just made my life 100x happier Cutie ❤️✨ I promise love, laughter & forever madness 💍💕");
+            createHearts();
+        }
+        function typeWriter(text) {
+            const message = document.getElementById("message");
+            message.innerHTML = "";
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    message.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, 30);
+                }
+            }
+            typing();
+        }
+        function createHearts() {
+            for (let i = 0; i < 40; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+            }
         }
     </script>
 </body>
