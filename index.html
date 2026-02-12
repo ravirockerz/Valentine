@@ -1,74 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Proposal</title>
+    <title>Will You Be My Valentine? 💖</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ffeef2;
-            color: #333;
-            margin: 0;
-            padding: 20px;
             text-align: center;
-        }
-        h1 {
-            color: #e63946;
-            animation: fadeIn 1s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .funny-line {
-            font-size: 24px;
-            margin: 20px 0;
-        }
-        .form-container {
-            margin: 20px 0;
-            padding: 10px;
-            border: 2px dashed #f1c40f;
-            display: inline-block;
-        }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #e63946;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
             color: white;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 100px;
+            font-size: 40px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 20px;
+            border: none;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: 0.3s;
         }
-        button:hover {
-            background-color: #d62839;
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
         }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 24px;
-            }
-            .funny-line {
-                font-size: 18px;
-            }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <h1>Will You Be My Valentine?</h1>
-    <div class="funny-line">Roses are red, violets are blue, I can't rhyme, but will you?
-    </div>
-    <div class="form-container">
-        <input type="text" placeholder="Your Name" required>
-        <input type="text" placeholder="Your Partner's Name" required>
-        <button onclick="submitProposal()">Submit</button>
-    </div>
-    <script>
-        function submitProposal() {
-            alert('You just proposed to your Valentine! 💖');
+
+    <h1>Will You Be My Valentine? 💕</h1>
+
+    <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNo()">No 😢</button>
+
+    <h2 id="response"></h2>
+
+<script>
+    function sayYes() {
+        document.getElementById("response").innerHTML =
+            "Yayyyyy!!! ❤️ I knew you would say YES! 💍✨";
+        createHearts();
+    }
+
+    function moveNo() {
+        const btn = document.getElementById("noBtn");
+        btn.style.top = Math.random() * window.innerHeight + "px";
+        btn.style.left = Math.random() * window.innerWidth + "px";
+    }
+
+    function createHearts() {
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            document.body.appendChild(heart);
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
