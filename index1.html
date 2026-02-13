@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiss Day Cutie 💋</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff4e8a,#ff9ecf);
+    padding:20px;
+    overflow:hidden;
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+    font-size:clamp(22px,5vw,28px);
+    margin-bottom:20px;
+}
+
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:25px;
+    margin:8px;
+    cursor:pointer;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.yesBtn{
+    background:#ff2e63;
+    color:white;
+}
+
+.noBtn{
+    background:#333;
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#message{
+    margin-top:15px;
+    min-height:60px;
+    font-size:16px;
+}
+
+img{
+    width:100%;
+    max-width:250px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Happy Kiss Day Cutie 💋</h1>
+<p>Answer honestly 😌</p>
+
+<div id="questionArea">
+    <button class="yesBtn" onclick="startFun()">Start 😏</button>
+</div>
+
+<div id="message"></div>
+<div id="gifArea"></div>
+
+</div>
+
+<script>
+
+let step=0;
+
+const questions=[
+    "On a scale of 1-10, how cute am I? 😎",
+    "Can I get 1 tiny kiss? 🥺",
+    "What about 2? 😏",
+    "Unlimited kisses subscription? 💋💋",
+    "Final question... Kiss Day special for me? 😌"
+];
+
+const funnyNo=[
+    "Are you sure? I brushed my teeth 😌",
+    "Come onnnn 😭",
+    "Free chocolate included 🍫",
+    "Background romantic music playing 🎶",
+    "Too late... sending virtual kiss anyway 💋"
+];
+
+function startFun(){
+    nextQ();
+}
+
+function nextQ(){
+    if(step<questions.length){
+        document.getElementById("message").innerHTML=questions[step];
+        document.getElementById("questionArea").innerHTML=
+        `<button class="yesBtn" onclick="yesAction()">Yes 😍</button>
+         <button class="noBtn" onclick="noAction()">No 😜</button>`;
+        step++;
+    }else{
+        success();
+    }
+}
+
+function yesAction(){
+    nextQ();
+}
+
+function noAction(){
+    document.getElementById("message").innerHTML=
+    funnyNo[Math.floor(Math.random()*funnyNo.length)];
+}
+
+function success(){
+    document.getElementById("message").innerHTML=
+    "Mission Successful 💖 Kiss Day officially legendary!";
+    document.getElementById("gifArea").innerHTML=
+    `<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">`;
+    createHearts();
+}
+
+function createHearts(){
+    for(let i=0;i<40;i++){
+        let heart=document.createElement("div");
+        heart.innerHTML="💋";
+        heart.className="heart";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(Math.random()*20+15)+"px";
+        heart.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(heart);
+    }
+}
+
+</script>
+
+</body>
+</html>
